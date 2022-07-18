@@ -35,7 +35,27 @@ Out of scope as this creates quite a heavy footprint and is somewhat overkill fo
 	4. `rc-update add ip6tables`
 	5. `rc-update add podman`
 10. [*] Setup Samba
-11. [*] Setup qemu+libvirt
+	1. Install `wsdd2` for windows 10+ discovery
+	2. Install `avahi` for macos discovery and setup custom icon using the following
+		```
+		<?xml version="1.0" standalone='no'?><!--*-nxml-*-->
+		<!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+
+		<service-group>
+		 <name replace-wildcards="yes">%h</name>
+		 <service>
+		  <type>_smb._tcp</type>
+		  <port>445</port>
+		 </service>
+		 <service>
+		  <type>_device-info._tcp</type>
+		  <port>0</port>
+		  <txt-record>model=MacPro7,1</txt-record>
+		  <txt-record>ecolor=226,226,224</txt-record>
+		 </service>
+		</service-group>
+		```
+12. [*] Setup qemu+libvirt
 
 ### Container setup
 1. Create a new network in podman using `podman network create <name>` . The default network does not enable DNS on containers and we want to be able to leverage this.
