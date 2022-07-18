@@ -21,8 +21,9 @@ Out of scope as this creates quite a heavy footprint and is somewhat overkill fo
 4. Install `apk add iptables ip6tables iptables-openrc ip6tables-openrc podman podman-openrc`.
 5. (Optional) Use ZFS
 	1.  `apk add zfs zfs-libs zfs-openrc`
-	2. Change podman storage driver
-	3. To do
+	2. Set xattr storage method to allow large inode. (This along with smb stream_xattr) keep hidden files away. `zfs set xattr=sa dnodesize=auto <pool>`
+	3. Change podman storage driver
+	4. To do
 6. Enable `iptables` and `cgroups` services.
 7. Edit `/etc/conf.d/iptables` and `/etc/conf.d/ip6tables`  set `SAVE_ON_STOP="no"`.
 8. (Optional) Rootless services
